@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <!--Link to Style Sheet-->
+    <link rel="#" type="" href="">
+
+    <title> Vector Addition </title>
+
+<style type ="text/css">
+
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .item1 { grid-area: menu; }
+    .item2 { grid-area: header; }
+    .item3 { grid-area: vectorInput; }
+    .item4 { grid-area: vectorFinal; }
+
+    .item1 li {
+        float: left;
+        padding: 10px;
+        margin: 5px;
+        border-radius: 15px;
+        list-style-type: none;
+        background-color:paleturquoise;
+    }
+
+    .flex-container{
+        display: grid;
+        grid-template-areas:
+            'menu menu'
+            'header header'
+            'vectorInput vectorFinal';
+     
+        gap: 10px;
+        background-color: #2196F3;
+        padding: 10px;
+    }
+
+    .grid-container > div {
+        background-color: rgba(255, 255, 255, 0.8);
+        text-align: center;
+        padding: 10px 0;
+        font-size: 30px;
+    }
+
+    /* Menu = Item1 */
+    .item1 li{
+        margin: 5px;
+        padding: 10px;
+        border-style: solid;
+    }
+
+
+    /*
+    @media screen and (max-width: 650px){
+        .container1{
+            flex-direction: column;
+            background-position: auto;
+            background-size: 100%;
+            background-repeat: repeat;
+            background-position:top;
+            
+        }
+    }
+*/
+
+</style>
+</head>
+
+
+<body>
+
+    <h1>Vector Addition</h1>
+    
+    <div class="grid-container">
+    
+      <!-- menu/nav -->
+      <div class="item1">
+        <ul>
+            <li><a href="../index.html">home</a></li>
+            <li><a href="mechanicsIndex.html"> mechanics </a></li>
+            <li><a href="">heat</a></li>
+            <li><a href="">electricity</a></li>
+            <li><a href="">modern</a></li>
+            <li><a href="">waves</a></li>
+            <li><a href="">misc</a></li>
+        </ul>
+      </div>
+
+      <div class="item2">Vector Addition Page</div>
+      <div class="item3">Input Vectors</div>  
+      <div class="item4">Final Vector</div>
+    </div>
+
+    <!-- <nav>
+        <div class="logo">JB's Science Fiction</div>
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">Books</a></li>
+            <li><a href="">Games</a></li>
+            <li><a href="">Movies</a></li>
+        </ul>
+
+    </nav> -->
+
+
+    <main>
+        
+       
+
+    </main>
+
+</body>
+
+</html>

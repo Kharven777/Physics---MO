@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <!--Link to Style Sheet-->
+    <link rel="#" type="" href="">
+
+    <title> Vector Addition </title>
+
+<style type ="text/css">
+
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+
+    .menu li {
+        float: left;
+        padding: 10px;
+        margin: 5px;
+        border-style: solid;
+        border-radius: 15px;
+        list-style-type: none;
+        background-color:paleturquoise;
+        font-size: 30px;  
+    }
+
+    body{
+        display: flexbox;
+        flex: 1;
+        gap: 10px;
+        background-color: #2196F3;
+        padding: 10px;
+        height: 90%;
+    }
+
+    /* Vector Addition Page */
+    .vectorTitle{
+        flex: 1;
+        margin-left: 40%;
+        padding-top: 100px;
+        position: center;
+        font-size: 25px;
+
+    }
+    
+    /* Input Vectors */
+    .inputVector{
+        flex: 1;
+        margin: 20px;
+        margin-top: 50px;
+    }
+
+    /* Resultant Vector */
+    .resultVector{
+        flex: 1;
+        margin-top: 200px;
+        margin-left: 20px;
+    }
+
+    #canvas{
+        background: white;
+        margin-left: 5%;
+    }
+
+    #calculate{
+        margin-left: 550px;
+    }
+
+
+    /*
+    @media screen and (max-width: 650px){
+        .container1{
+            flex-direction: column;
+            background-position: auto;
+            background-size: 100%;
+            background-repeat: repeat;
+            background-position:top;
+            
+        }
+    }
+*/
+
+</style>
+</head>
+
+
+<body>
+
+    <h1>Vector Addition</h1>
+    
+    <div class="flex-container">
+    
+      <!-- menu/nav -->
+      <div class="menu">
+        <ul>
+            <li><a href="../index.html">home</a></li>
+            <li><a href="mechanicsIndex.html"> mechanics </a></li>
+            <li><a href="">heat</a></li>
+            <li><a href="">electricity</a></li>
+            <li><a href="">modern</a></li>
+            <li><a href="">waves</a></li>
+            <li><a href="">misc</a></li>
+        </ul>
+      </div>
+
+      <div class="vectorTitle"><h3>Vector Addition Page</h3></div>
+
+        <div class="inputVector">
+            <h2>Input Vectors</h2>
+            <br><br><br>
+            <canvas id="canvas"></canvas>
+            <br><br>
+            <form id="numVectorsForm" onSubmit="return false">
+                <input type="number" id="myNumber" value="2">
+                <button onclick= "numVect(myNumber.value)">Number of Vectors</button>
+            </form>
+
+            <br>
+        </div>
+
+            <h2 class="test">Enter Vectors:<br><br></h2>
+
+            <p id="vectorList"></p>
+            <!--
+            <div class="vector1">
+                Vector Magnitude
+                <input type="number" id = "vectorMag1" value = 10>
+                Vector Direction (in degrees)
+                <input type="number" id = "vectorDir1" value = 10>
+                <br>
+                <br>
+            </div>
+
+                Vector Magnitude
+                <input type="number" id = "vectorMag2" value = 20>
+                Vector Direction (in degrees)
+                <input type="number" id = "vectorDir2" value = 20>
+            -->
+    </div>
+
+            <script>
+                const canvas = document.getElementById('canvas');
+                const ctx = canvas.getContext('2d');
+
+                canvas.height = 1000;
+                canvas.width = 1000;
+
+                ctx.beginPath();
+                ctx.strokeStyle = 'rgba(0,0,0,1)';
+
+                ctx.moveTo(0,500);
+                for(i=0; i<=1000; i+=100) {
+                    ctx.lineTo(i, 500);
+                    ctx.lineTo(i, 520);
+                    ctx.lineTo(i, 480);
+                    ctx.lineTo(i,500);
+                }
+
+                ctx.moveTo(500,0);
+                for(i=0; i<=1000; i+=100) {
+                    ctx.lineTo(500, i);
+                    ctx.lineTo(520, i);
+                    ctx.lineTo(480, i);
+                    ctx.lineTo(500, i);
+                }
+                
+                //ctx.lineTo(1000,500);
+                ctx.stroke();
+
+                ctx.fillStyle = 'rgba(255,26,104,1)';
+                ctx.fillRect(10,10,10,10);
+
+                /* Getting input for arrays */
+                function numVect(numVectors) {
+                    vList = document.getElementById("vectorList");
+                    let finalList = "";
+
+                    for(i=0; i<numVectors; i++){
+                        newAdd = "<input type='number' id = 'vectorMagId" + (i+1) + "' value = 10>" + "  " + " <input type='number' id = 'vectorDir" + (i+1) + "' value = 10> <br><br>";
+                        finalList +=  newAdd;
+                    }
+
+                    document.getElementById("vectorList").innerHTML = finalList;
+                    console.log(finalList);
+
+                    return;
+                }
+
+                function showLines(mag, dir){
+                    /* get info vector 1*/
+                    ctx.moveTo(500,500);
+                    let radians = dir * Math.PI/180;
+                    x = Math.sin(radians);
+                    y = Math.cos(radians);
+                    console.log(mag,dir);
+                    console.log(x,y);
+
+                    return;
+                }
+
+                /*
+                function calcResult(){
+                    // Calculates the x and y components of the first vector
+                    let Rad1= 2*Math.PI*(document.getElementById("vectorDir1").value)/360;
+
+                    xCos=Math.cos(Rad1);
+                    ySin=Math.sin(Rad1);
+                    mag1 = (document.getElementById("vectorMag1").value);
+                    x1 = xCos * mag1;
+                    y1 = ySin * mag1;
+                    console.log(xCos, ySin);
+
+                }
+
+                */
+
+                
+            </script> 
+
+      <div class="resultVector"><h2>Final Vector</h2></div>
+
+    </div>
+
+</body>
+
+</html>

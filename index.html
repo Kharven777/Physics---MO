@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <!--Link to Style Sheet-->
+    <link rel="#" type="" href="">
+
+    <title> Physics - Magnum Opus </title>
+
+<style type ="text/css">
+
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .item1 { grid-area: menu; }
+
+    .item2 { grid-area: header; }
+    .item3 { grid-area: mechanics; }
+    .item4 { grid-area: heat; }
+    .item5 { grid-area: electricity; }
+    .item6 { grid-area: modern; }
+    .item7 { grid-area: waves; }
+    .item8 { grid-area: misc; }
+
+    .item1 li {
+        float: left;
+        padding: 10px;
+        margin: 5px;
+        border-radius: 15px;
+        list-style-type: none;
+        background-color:paleturquoise;
+    }
+
+    .grid-container{
+        display: grid;
+        grid-template-areas:
+            'menu menu'
+            'header header'
+            'mechanics heat'
+            'electricity modern'
+            'waves misc';
+        gap: 10px;
+        background-color: #2196F3;
+        padding: 10px;
+    }
+
+    .grid-container > div {
+        background-color: rgba(255, 255, 255, 0.8);
+        text-align: center;
+        padding: 10px 0;
+        font-size: 30px;
+    }
+
+    /* Menu = Item1 */
+    .item1 li{
+        margin: 5px;
+        padding: 10px;
+        border-style: solid;
+    }
+
+
+    /*
+    @media screen and (max-width: 650px){
+        .container1{
+            flex-direction: column;
+            background-position: auto;
+            background-size: 100%;
+            background-repeat: repeat;
+            background-position:top;
+            
+        }
+    }
+*/
+
+</style>
+</head>
+
+
+<body>
+
+    <h1>Home page</h1>
+    
+    <div class="grid-container">
+    
+      <!-- menu/nav -->
+      <div class="item1">
+        <ul>
+            <li><a href="index.html">home</a></li>
+            <li><a href="mechanics/mechanicsIndex.html"> mechanics </a></li>
+            <li><a href="">heat</a></li>
+            <li><a href="">electricity</a></li>
+            <li><a href="">modern</a></li>
+            <li><a href="">waves</a></li>
+            <li><a href="">misc</a></li>
+        </ul>
+      </div>
+
+      <div class="item2">Physics Problem Assistance</div>
+      <div class="item3"><a href="mechanics/mechanicsIndex.html"> mechanics </a></div>  
+      <div class="item4">heat</div>
+      <div class="item5">electricity</div>
+      <div class="item6">modern</div>
+      <div class="item7">waves</div>
+      <div class="item8">misc</div>
+    </div>
+
+    <!-- <nav>
+        <div class="logo">JB's Science Fiction</div>
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">Books</a></li>
+            <li><a href="">Games</a></li>
+            <li><a href="">Movies</a></li>
+        </ul>
+
+    </nav> -->
+
+
+    <main>
+        
+       
+
+    </main>
+
+</body>
+
+</html>
