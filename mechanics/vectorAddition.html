@@ -184,7 +184,7 @@
                     let finalList = "";
 
                     for(i=0; i<numVectors; i++){
-                        newAdd = "Direction Vector " + (i+1) +  "____Magnitude Vector " + (i+1) + "<br>" + "<input type='number' id = 'vectorDirId" + (i+1) + "' value = 10>" + "  " + " <input type='number' id = 'vectorMagId" + (i+1) + "' value = " + (i+1) * 10 + "> " + "<br><br>";
+                        newAdd = "Direction Vector " + (i+1) +  "____Magnitude Vector " + (i+1) + "<br>" + "<input type='number' id = 'vectorDirId" + (i+1) + "' value = " + (i+1) * 10 + "> " + " <input type='number' id = 'vectorMagId" + (i+1) + "' value = 250> " + "<br><br>";
                         finalList +=  newAdd;
                     }
 
@@ -200,7 +200,7 @@
                 function showInitialVectors(numVect){
                     // const vectArray=[numVect][dir, mag];
 
-                    console.log(numVect);
+                    // console.log(numVect);
 
                     for(i=0; i<numVect; i++){
                         vectDir = "vectorDirId" + (i+1);
@@ -211,7 +211,9 @@
                         
                         // vectArray[i][dir, mag];
 
-                        console.log(dir, mag);
+                        console.log("Input Direction: "+ dir, "Input Magnitude: " + mag);
+
+                        /* Function to draw Initial Lines */
                         drawLine(dir, mag);
 
                         console.log(i);
@@ -222,19 +224,27 @@
                     return;
                 }
 
-                function drawLine(mag, dir){
-                    /* get info vector 1*/
+                function drawLine(dir, mag){
+                    /* Moves to Center of canvas */
                     ctx.moveTo(500,500);
+
+                    /* convert dir to radians */
                     let radians = dir * Math.PI/180;
 
+                    x = Math.cos(radians);
+                    y = Math.sin(radians);
 
-                    x = Math.sin(radians);
-                    y = Math.cos(radians);
+                    // console.log(x,y);
 
-                    xMag = x * mag;
-                    yMag = y * mag;
+                    console.log("X is " + (x * mag));
+                    console.log("Y is " + y * mag);
 
-                    ctx.lineTol(xMag, yMag);
+                    xMag = 500 + (x * mag);
+                    yMag = 500 - (y * mag);
+
+                    // console.log(xMag, yMag);
+
+                    ctx.lineTo(xMag, yMag);
 
                     ctx.stroke()
                     // console.log(mag,dir);
