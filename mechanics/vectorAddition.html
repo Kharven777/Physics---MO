@@ -115,16 +115,26 @@
             <canvas id="canvas"></canvas>
             <br><br>
             <form id="numVectorsForm" onSubmit="return false">
-                <input type="number" id="myNumber" value="2">
+                <input type="number" id="myNumber" value="4">
                 <button onclick= "numVect(myNumber.value)">Number of Vectors</button>
             </form>
 
             <br>
-        </div>
 
             <h2 class="test">Enter Vectors:<br><br></h2>
 
             <p id="vectorList"></p>
+        </div>
+        
+
+        <div class="resultVector">
+
+        <button onclick = "showInitialVectors(myNumber.value)">Show Vectors</button>
+
+        <h2>Final Vector</h2>
+
+        </div>
+         
      
     </div>
 
@@ -132,13 +142,18 @@
                 const canvas = document.getElementById('canvas');
                 const ctx = canvas.getContext('2d');
 
+                // Sets Canvas Height and Width
                 canvas.height = 1000;
                 canvas.width = 1000;
 
+                // Begins line and sets stroke style
                 ctx.beginPath();
                 ctx.strokeStyle = 'rgba(0,0,0,1)';
 
+                // Moves to initial position
                 ctx.moveTo(0,500);
+
+                // Creates horizontal lines for cartesian coordinates
                 for(i=0; i<=1000; i+=100) {
                     ctx.lineTo(i, 500);
                     ctx.lineTo(i, 520);
@@ -146,6 +161,7 @@
                     ctx.lineTo(i,500);
                 }
 
+                // Creates Vertical Lines for cartesian coordinates
                 ctx.moveTo(500,0);
                 for(i=0; i<=1000; i+=100) {
                     ctx.lineTo(500, i);
@@ -154,36 +170,75 @@
                     ctx.lineTo(500, i);
                 }
                 
-                //ctx.lineTo(1000,500);
+                // Actually Draws lines
                 ctx.stroke();
 
+                // Creates red Rectangle in top left corner
                 ctx.fillStyle = 'rgba(255,26,104,1)';
                 ctx.fillRect(10,10,10,10);
 
-                /* Getting input for arrays */
+                // This function creates input vector blocks onto the screen
                 function numVect(numVectors) {
+                    // Gets Number of vectors and puts information into finalList
                     vList = document.getElementById("vectorList");
                     let finalList = "";
 
                     for(i=0; i<numVectors; i++){
-                        newAdd = "<input type='number' id = 'vectorMagId" + (i+1) + "' value = 10>" + "  " + " <input type='number' id = 'vectorDir" + (i+1) + "' value = 10> <br><br>";
+                        newAdd = "Direction Vector " + (i+1) +  "____Magnitude Vector " + (i+1) + "<br>" + "<input type='number' id = 'vectorDirId" + (i+1) + "' value = 10>" + "  " + " <input type='number' id = 'vectorMagId" + (i+1) + "' value = " + (i+1) * 10 + "> " + "<br><br>";
                         finalList +=  newAdd;
                     }
 
+                    // Writes finalList information to screen.
                     document.getElementById("vectorList").innerHTML = finalList;
-                    console.log(finalList);
+
+                    // sends finalList information to the log
+                    //console.log(finalList);
 
                     return;
                 }
 
-                function showLines(mag, dir){
+                function showInitialVectors(numVect){
+                    // const vectArray=[numVect][dir, mag];
+
+                    console.log(numVect);
+
+                    for(i=0; i<numVect; i++){
+                        vectDir = "vectorDirId" + (i+1);
+                        vectMag = "vectorMagId" + (i+1);
+
+                        dir = document.getElementById(vectDir).value;
+                        mag = document.getElementById(vectMag).value;
+                        
+                        // vectArray[i][dir, mag];
+
+                        console.log(dir, mag);
+                        drawLine(dir, mag);
+
+                        console.log(i);
+                        
+                    }
+                    // console.log(value, dir);
+
+                    return;
+                }
+
+                function drawLine(mag, dir){
                     /* get info vector 1*/
                     ctx.moveTo(500,500);
                     let radians = dir * Math.PI/180;
+
+
                     x = Math.sin(radians);
                     y = Math.cos(radians);
-                    console.log(mag,dir);
-                    console.log(x,y);
+
+                    xMag = x * mag;
+                    yMag = y * mag;
+
+                    ctx.lineTol(xMag, yMag);
+
+                    ctx.stroke()
+                    // console.log(mag,dir);
+                    // console.log(x,y);
 
                     return;
                 }
@@ -207,9 +262,7 @@
                 
             </script> 
 
-      <div class="resultVector"><h2>Final Vector</h2></div>
-
-    </div>
+      
 
 </body>
 
