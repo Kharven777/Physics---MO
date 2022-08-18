@@ -29,45 +29,26 @@
     }
 
     body{
-        display: flexbox;
-        flex: 1;
         gap: 10px;
         background-color: #2196F3;
         padding: 10px;
         height: 90%;
     }
 
-    /* Vector Addition Page */
-    .vectorTitle{
+    .main{
+        display: flex;
+    }
+
+    .child{
         flex: 1;
-        margin-left: 40%;
-        padding-top: 100px;
-        position: center;
-        font-size: 25px;
+        margin: 5px;
 
     }
+
     
-    /* Input Vectors */
-    .inputVector{
-        flex: 1;
-        margin: 20px;
-        margin-top: 50px;
-    }
-
-    /* Resultant Vector */
-    .resultVector{
-        flex: 1;
-        margin-top: 200px;
-        margin-left: 20px;
-    }
-
     #canvas{
         background: white;
         margin-left: 5%;
-    }
-
-    #calculate{
-        margin-left: 550px;
     }
 
 
@@ -92,8 +73,6 @@
 
     <h1>Vector Addition</h1>
     
-    <div class="flex-container">
-    
       <!-- menu/nav -->
       <div class="menu">
         <ul>
@@ -107,26 +86,28 @@
         </ul>
       </div>
 
-      <div class="vectorTitle"><h3>Vector Addition Page</h3></div>
+        <div id="main">
+            <div class="child">
+                <br><br><br><br><br>
+                <h2 id="inputVector">Input Vector Graph</h2>
+                <canvas id="canvas"></canvas>
+            </div>
 
-        <div class="inputVector">
-            <h2>Input Vectors</h2>
-            <br><br><br>
-            <canvas id="canvas"></canvas>
-            <br><br>
-            <form id="numVectorsForm" onSubmit="return false">
-                <input type="number" id="myNumber" value="4">
-                <button onclick= "numVect(myNumber.value)">Number of Vectors</button>
-            </form>
+            <div class="child">
+                <br><br>
+                <form id="numVectorsForm" onSubmit="return false">
+                    <input type="number" id="myNumber" value="4">
+                    <button onclick= "numVect(myNumber.value)">Number of Vectors</button>
+                </form>
 
-            <br>
-            <br>
+                <br>
+                <br>
 
-            <h2 class="test">Enter Vectors:<br><br></h2>
+                <h2 class="test">Input Vectors:<br><br></h2>
 
-            <p id="vectorList"></p>
+                <p id="vectorList"></p>
+            </div>
         </div>
-        
 
         <div class="resultVector">
 
