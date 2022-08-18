@@ -143,32 +143,42 @@
                 const canvas = document.getElementById('canvas');
                 const ctx = canvas.getContext('2d');
 
+                const canvasHeight = window.innerHeight;
+                const canvasWidth = window.innerWidth/2; 
+
+                console.log("innerheight is " + canvasHeight);
+                console.log("innerheight is " + canvasWidth);
+
                 // Sets Canvas Height and Width
-                canvas.height = 1000;
-                canvas.width = 1000;
+                canvas.height = canvasHeight;
+                canvas.width = canvasWidth;
+
+                //Center Point X and Y
+                centerX = canvasWidth/2;
+                centerY = canvasHeight/2;
 
                 // Begins line and sets stroke style
                 ctx.beginPath();
                 ctx.strokeStyle = 'rgba(0,0,0,1)';
 
                 // Moves to initial position
-                ctx.moveTo(0,500);
+                ctx.moveTo(0,centerY);
 
                 // Creates horizontal lines for cartesian coordinates
-                for(i=0; i<=1000; i+=100) {
-                    ctx.lineTo(i, 500);
-                    ctx.lineTo(i, 520);
-                    ctx.lineTo(i, 480);
-                    ctx.lineTo(i,500);
+                for(i=0; i<=(canvasWidth); i+=canvasWidth/10) {
+                    ctx.lineTo(i, centerY);
+                    ctx.lineTo(i, centerY+20);
+                    ctx.lineTo(i, centerY-20);
+                    ctx.lineTo(i, centerY);
                 }
 
                 // Creates Vertical Lines for cartesian coordinates
-                ctx.moveTo(500,0);
-                for(i=0; i<=1000; i+=100) {
-                    ctx.lineTo(500, i);
-                    ctx.lineTo(520, i);
-                    ctx.lineTo(480, i);
-                    ctx.lineTo(500, i);
+                ctx.moveTo(centerX,0);
+                for(i=0; i<=(canvasHeight+1); i+=canvasHeight/10) {
+                    ctx.lineTo(centerX, i);
+                    ctx.lineTo(centerX+20, i);
+                    ctx.lineTo(centerX-20, i);
+                    ctx.lineTo(centerX, i);
                 }
                 
                 // Actually Draws lines
