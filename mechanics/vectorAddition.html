@@ -16,8 +16,18 @@
         padding: 0px;
     }
 
-
     .menu li {
+        float:none;
+        padding: 10px;
+        margin: 5px;
+        margin-right: 50px;
+        border-style: solid;
+        border-radius: 15px;
+        list-style-type: none;
+        background-color:paleturquoise;
+        font-size: 30px;
+
+        /*
         float: left;
         padding: 10px;
         margin: 5px;
@@ -25,32 +35,49 @@
         border-radius: 15px;
         list-style-type: none;
         background-color:paleturquoise;
-        font-size: 30px;  
+        font-size: 30px;
+        */
     }
 
     body{
         gap: 10px;
         background-color: #2196F3;
         padding: 10px;
-        height: 90%;
+        height: 50%;
     }
 
-    .main{
+    .container{
         display: flex;
     }
 
     .child{
-        flex: 1;
-        margin: 5px;
-
+        /* flex:.75; */
     }
 
     
+
     #canvas{
         background: white;
         margin-left: 5%;
     }
 
+    .inputVectors{
+        margin-left: 100px;
+    }
+
+    .finalVector{
+        margin-top: 30px;
+        margin-left: 50px;
+    }
+
+    .final{
+        margin-left: 20px
+    }
+
+    .showVectors{
+        margin: 10px;
+        margin-left: 150px;
+    }
 
     /*
     @media screen and (max-width: 650px){
@@ -74,47 +101,59 @@
     <h1>Vector Addition</h1>
     
       <!-- menu/nav -->
-      <div class="menu">
-        <ul>
-            <li><a href="../index.html">home</a></li>
-            <li><a href="mechanicsIndex.html"> mechanics </a></li>
-            <li><a href="">heat</a></li>
-            <li><a href="">electricity</a></li>
-            <li><a href="">modern</a></li>
-            <li><a href="">waves</a></li>
-            <li><a href="">misc</a></li>
-        </ul>
-      </div>
+      <div class="container">
 
-        <div id="main">
+            <div class="menu">
+                <ul>
+                    <li><a href="../index.html">home</a></li>
+                    <li><a href="mechanicsIndex.html"> mechanics </a></li>
+                    <li><a href="">heat</a></li>
+                    <li><a href="">electricity</a></li>
+                    <li><a href="">modern</a></li>
+                    <li><a href="">waves</a></li>
+                    <li><a href="">misc</a></li>
+                </ul>
+            </div>
+     
+        
             <div class="child">
-                <br><br><br><br><br>
                 <h2 id="inputVector">Input Vector Graph</h2>
                 <canvas id="canvas"></canvas>
             </div>
 
-            <div class="child">
+            <div class = finalVector>
+                <h2 class="final">Final Vector:</h2>
+                <br>
+           
+                <p class="final">Direction: </p> <br><br>
+                <p class="final">Magnitude: </p>
+            </div>
+
+            <div class="inputVectors">
+                <br><br>
+                <h2 class="test">Input Vectors:</h2>
                 <br><br>
                 <form id="numVectorsForm" onSubmit="return false">
                     <input type="number" id="myNumber" value="4">
                     <button onclick= "numVect(myNumber.value)">Number of Vectors</button>
                 </form>
 
+                <button class = "showVectors" onclick = "showInitialVectors(myNumber.value)">Show Vectors</button>
                 <br>
                 <br>
-
-                <h2 class="test">Input Vectors:<br><br></h2>
 
                 <p id="vectorList"></p>
             </div>
+        
+
+            
+
         </div>
+      
+        
 
         <div class="resultVector">
-
-        <button onclick = "showInitialVectors(myNumber.value)">Show Vectors</button>
-
-        <h2>Final Vector</h2>
-
+        
         </div>
          
      
