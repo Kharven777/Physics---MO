@@ -54,34 +54,46 @@
 
     .child{
         margin-left: 2%;
+        padding: 5px;
+        border: solid 1px black;
     }
 
     
 
     #canvas{
         background: white;
-        margin-left: 5%;
+        margin-left: 0%;
+        
     }
 
     .inputVectors{
         margin-left: 2%;
+        padding: 5px;
+        border: solid 1px black;
     }
 
-    .finalVector{
-        margin-top: 30px;
-        margin-left: 50px;
+    .screenReload{
+        margin-left: 5%;
+        font-size: Large;
+        border-style: ridge;
+        color: green;
+        
     }
 
-    .finalVector{
-        margin-left: 20px
+    #finalVector{
+        margin: 10%;
+        margin-right: 20%;
+        padding: 10%;
     }
 
-    finalDirection{
-        margin-left: 20px;
+    #finalDirection{
+        margin: 10%;
+        padding: 10%;
     }
 
-    finalMagnitude{
-        margin-left: 20px;
+    #finalMagnitude{
+        margin: 10%;
+        padding: 10%;
     }
 
     .numVectors{
@@ -147,6 +159,7 @@
                 <br><br>
                 <form id="numVectorsForm" onSubmit="return false">
                     <input type="number" id="myNumber" value="4">
+                    
                     <button title="Enter Number of Vectors to add" class = "numVectors" onclick= "numVect(myNumber.value)">Number of Vectors</button>
                 </form>
 
@@ -159,6 +172,7 @@
             <div class="child">
                 <h2 id="inputVector">Input Vector Graph
                 <button title="Click to show Input Vectors on Graph" class = "showVectors" onclick = "showInitialVectors(myNumber.value)">Click to Show Input Vectors</button>
+                <button title="Reloads Screen" class="screenReload" onclick = "window.location.reload(true)">Click to reset graph</button>
                 </h2>
                 <br>
                 <canvas id="canvas"></canvas>
@@ -166,10 +180,10 @@
 
             <div class = child>
             <div class = finalVector>
-                <h2 class="finalVector">Final Vector:</h2>
+                <h2 id="finalVector">Final Vector:</h2>
                 <br>
-                <p class="finalDirection">Direction: </p> <br><br>
-                <p class="finalMagnitude">Magnitude: </p>
+                <p id="finalDirectionString">Direction: </p> <br><br>
+                <p id="finalMagnitudeString">Magnitude: </p>
             </div>
             </div>
 
@@ -183,6 +197,7 @@
     </div>
 
             <script>
+              
                 /* Constructs canvas element and shows canvas height and width in the console log */
                 const canvas = document.getElementById('canvas');
                 const ctx = canvas.getContext('2d');
@@ -231,15 +246,18 @@
                 // Creates red Rectangle in top left corner
                 ctx.fillStyle = 'rgba(255,26,104,1)';
                 ctx.fillRect(10,10,10,10);
+                
 
                 // This function creates input vector blocks onto the screen
                 function numVect(numVectors) {
+                    
+
                     // Gets Number of vectors and puts information into finalList
                     vList = document.getElementById("vectorList");
                     let finalList = "";
 
                     for(i=0; i<numVectors; i++){
-                        newAdd = "Direction Vector " + (i+1) +  "____Magnitude Vector " + (i+1) + "<br>" + "<input type='number' id = 'vectorDirId" + (i+1) + "' value = " + (i+1) * 10 + "> " + " <input type='number' id = 'vectorMagId" + (i+1) + "' value = 250> " + "<br><br>";
+                        newAdd = "Direction Vector " + (i+1) +  "____Magnitude Vector " + (i+1) + "<br>" + "<input type='number' id = 'vectorDirId" + (i+1) + "' value = " + (i+1) * 10 + "> " + " <input type='number' id = 'vectorMagId" + (i+1) + "' value = 100> " + "<br><br>";
                         finalList +=  newAdd;
                     }
 
@@ -253,6 +271,7 @@
                 }
 
                 function showInitialVectors(numVect){
+                    
                     // const vectArray=[numVect][dir, mag];
 
                     // console.log(numVect);
@@ -302,33 +321,24 @@
                         /* Final Magnitude */
                         finalMag = Math.sqrt((finalXMag * finalXMag)+ (finalYMag * finalYMag));
 
-
+                        /* Places final result into Final Vector Text on Screen */
+                        // finalVectorText(dirFinal, finalMag);
+ 
 
                         /* Places final values on the screen */
+                        document.getElementById("finalDirectionString").innerHTML="Direction:  " + dirFinal.toFixed(1) + "  Degrees";
+                        document.getElementById("finalMagnitudeString").innerHTML="Magnitude:  " + finalMag.toFixed(1);
 
-
-                        console.log("Final X: " + finalX , "Final Y: " + finalY);
-                        console.log("Final Direction: " + dirFinal);
-                        console.log("Final Magnitude: " + finalMag);
-
-                        /* 
-                        if(i === (numVect - 1)){
-                            console.log(finalX, finalY);
-                        }
-                        */
-
-                        
                         
                     }
-                    // console.log(value, dir);
-
+                    showFinal(dirFinal, finalMag); 
                     return;
                 }
 
                 function drawLine(dir, mag){
                     ctx.beginPath();
                     ctx.strokeStyle = "blue";
-                    ctx.lineWidth=2;
+                    ctx.lineWidth=1;
 
                     centerX = canvasWidth/2;
                     centerY = canvasHeight/2;
@@ -341,11 +351,6 @@
 
                     x = Math.cos(radians);
                     y = Math.sin(radians);
-
-                    // console.log(x,y);
-
-                    // console.log("X is " + (x * mag));
-                    // console.log("Y is " + y * mag);
 
                     /* gives vector magnitudes in X and Y directions */
                     let vectorX = 0;
@@ -369,6 +374,40 @@
 
                     return;
                 }
+
+                function showFinal(dirFinal, finalMag){
+                    ctx.beginPath();
+                    ctx.strokeStyle = "red";
+                    ctx.lineWidth=3;
+
+                    centerX = canvasWidth/2;
+                    centerY = canvasHeight/2;
+
+                    /* Moves to Center of canvas */
+                    ctx.moveTo(centerX,centerY);
+
+                    let radians = dirFinal * Math.PI/180;
+
+                    x = Math.cos(radians);
+                    y = Math.sin(radians);
+
+                    vectorXFinal = x * finalMag;
+                    vectorYFinal = y * finalMag;
+
+                    console.log(vectorXFinal, vectorYFinal);
+
+                    xMag = centerX + vectorXFinal;
+                    yMag = centerY - vectorYFinal;
+
+                    ctx.lineTo(xMag, yMag);
+
+                    ctx.stroke();
+
+                    //console.log(centerX, centerY);
+                    return;
+                }
+
+                
                 
             </script>
 
